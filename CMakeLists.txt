@@ -3,7 +3,8 @@ project(hello_gstreamer C)
 include (${CMAKE_CURRENT_SOURCE_DIR}/FindGStreamer.cmake)
 
 set(hello_INCLUDE_DIRECTORIES
-    ${GSTREAMER_INCLUDE_DIRS}
+  ${GSTREAMER_INCLUDE_DIRS}
+  ${GLIB_INCLUDE_DIRS}
     )
 
 set(hello_LIBRARIES
@@ -18,4 +19,4 @@ include_directories(include)
 #Can manually add the sources using the set command as follows:
 set(SOURCES hellogst.c)
 add_executable(hello_gstreamer ${SOURCES})
-target_link_libraries(hello_gstreamer ${GSTREAMER_LIBRARIES})
+target_link_libraries(hello_gstreamer ${GLIB_LIBRARIES} ${GSTREAMER_LIBRARIES} )

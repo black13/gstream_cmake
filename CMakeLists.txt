@@ -1,9 +1,8 @@
-cmake_minimum_required(VERSION 3.2.0)
-
+cmake_minimum_required(VERSION 2.8)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -std=gnu++0x -g -fpermissive")
 
 find_package(PkgConfig REQUIRED)
-SET(CMAKE_ALL_ERRORS_FATAL TRUE)
+
 pkg_check_modules(GLIB REQUIRED glib-2.0)
 
 include_directories(
@@ -43,6 +42,10 @@ link_directories(
   ${GSTREAMER-FFT_LIBRARY_DIRS}
 )
 
+set(inputtest_SOURCES  
+  appsrc1.cpp
+)
+
 set(inputtest_LIBRARIES
   ${GSTREAMER_LIBRARIES}
   ${GSTREAMER-APP_LIBRARIES}
@@ -56,9 +59,6 @@ set(inputtest_LIBRARIES
   ${GLIB_GOBJECT_LIBRARIES}
 )
 
-set(SOURCES hellogst.c)
-add_executable(hello_gstreamer ${SOURCES})
-target_link_libraries(hello_gstreamer ${GSTREAMER_LIBRARIES} )
-
-
+add_executable(inputtest ${inputtest_SOURCES})
+target_link_libraries(inputtest ${inputtest_LIBRARIES})
 
